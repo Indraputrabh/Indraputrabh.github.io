@@ -2,7 +2,7 @@
 
 My blog. Mostly rants.
 
-Jekyll + GitHub Pages, dressed up to look like a circa-2008 WordPress install. Comments via Giscus.
+Jekyll + GitHub Pages, dressed up to look like a circa-2008 WordPress install. Comments via Disqus.
 
 Live at <https://indraputrabh.github.io/>.
 
@@ -34,14 +34,17 @@ words
 
 ## Comments
 
-Giscus stores them as GitHub Discussions. To turn it on:
+Disqus, so anyone with an email (or a Disqus / Google / Twitter / Facebook login) can comment.
 
-1. Install <https://github.com/apps/giscus> on this repo (Discussions are already enabled).
-2. Go to <https://giscus.app/>, paste `Indraputrabh/Indraputrabh.github.io`, pick "pathname" mapping, pick a Discussions category.
-3. Copy the `data-repo-id` and `data-category-id` it generates into the `giscus:` block in `_config.yml`.
-4. Push.
+1. Sign up at <https://disqus.com/> and pick "I want to install Disqus on my site".
+2. Give it any shortname (e.g. `indraputrabh-rants`). That's the unique key.
+3. Pick "Jekyll" as the platform when prompted (just for their instructions; nothing to install here).
+4. Put the shortname in `_config.yml` under `disqus.shortname`.
+5. Push. Comments box shows up at the bottom of every post.
 
 Until that's filled in, every post shows a yellow "comments not configured" notice instead of the widget. No broken markup, no surprises.
+
+Disqus is free, but the free tier shows ads. To turn ads off either pay them or switch to a different comments service later.
 
 ## Custom domain (for later)
 
