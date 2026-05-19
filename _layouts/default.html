@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS" href="{{ '/feed.xml' | relative_url }}">
+  {%- seo -%}
+</head>
+<body>
+  <div id="page">
+    {% include header.html %}
+
+    <div id="main">
+      <div id="content" role="main">
+        {{ content }}
+      </div><!-- #content -->
+
+      {% include sidebar.html %}
+    </div><!-- #main -->
+
+    {% include footer.html %}
+  </div><!-- #page -->
+</body>
+</html>

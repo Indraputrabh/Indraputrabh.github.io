@@ -1,0 +1,12 @@
+- title: Jekyll
+  url: https://jekyllrb.com/
+  external: true
+- title: GitHub Pages
+  url: https://pages.github.com/
+  external: true
+- title: Giscus
+  url: https://giscus.app/
+  external: true
+- title: The Old New Thing
+  url: https://devblogs.microsoft.com/oldnewthing/
+  external: true

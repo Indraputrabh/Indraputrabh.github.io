@@ -1,0 +1,20 @@
+<header id="header">
+  <div id="branding">
+    <h1 id="site-title"><a href="{{ '/' | relative_url }}" rel="home">{{ site.title }}</a></h1>
+    {%- if site.tagline -%}
+    <p id="site-description">{{ site.tagline }}</p>
+    {%- endif -%}
+  </div>
+
+  <nav id="access" role="navigation">
+    <ul class="menu">
+      <li{% if page.url == '/' %} class="current"{% endif %}><a href="{{ '/' | relative_url }}">Home</a></li>
+      {%- assign nav_items = site.data.nav | default: empty -%}
+      {%- for item in nav_items -%}
+      <li{% if page.url == item.url %} class="current"{% endif %}>
+        <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+      </li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+</header>

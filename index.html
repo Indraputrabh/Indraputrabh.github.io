@@ -1,0 +1,35 @@
+---
+layout: default
+title: Home
+pagination:
+  enabled: true
+---
+{%- for post in paginator.posts -%}
+<article class="post">
+  <header class="post-header">
+    <h2 class="post-title"><a href="{{ post.url | relative_url }}" rel="bookmark">{{ post.title }}</a></h2>
+    {% include post-meta.html post=post %}
+  </header>
+
+  <div class="post-entry">
+    {%- if post.excerpt -%}
+    {{ post.excerpt }}
+    {%- else -%}
+    {{ post.content | strip_html | truncatewords: 60 }}
+    {%- endif -%}
+    <p><a class="read-more" href="{{ post.url | relative_url }}">Continue reading &rarr;</a></p>
+  </div>
+</article>
+{%- endfor -%}
+
+<nav class="pagination" role="navigation">
+  {%- if paginator.previous_page -%}
+  <a class="prev" href="{{ paginator.previous_page_path | relative_url }}">&laquo; Newer posts</a>
+  {%- else -%}<span></span>{%- endif -%}
+
+  <span class="pagination-page">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+
+  {%- if paginator.next_page -%}
+  <a class="next" href="{{ paginator.next_page_path | relative_url }}">Older posts &raquo;</a>
+  {%- else -%}<span></span>{%- endif -%}
+</nav>

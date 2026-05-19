@@ -1,0 +1,364 @@
+---
+# Front matter required so Jekyll processes this file as SCSS.
+---
+
+$body-bg:       #f1f1f1;
+$content-bg:    #ffffff;
+$border:        #dddddd;
+$text:          #333333;
+$muted:         #777777;
+$link:          #21759b;
+$link-hover:    #d54e21;
+$header-bg:     #222222;
+$header-text:   #ffffff;
+$nav-bg:        #333333;
+$nav-text:      #cccccc;
+$widget-rule:   #cccccc;
+
+$serif: Georgia, "Times New Roman", Times, serif;
+$sans:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  background: $body-bg;
+  color: $text;
+  font: 14px/1.6 $serif;
+}
+
+a {
+  color: $link;
+  text-decoration: none;
+  &:hover { color: $link-hover; text-decoration: underline; }
+}
+
+img { max-width: 100%; height: auto; }
+
+#page {
+  max-width: 960px;
+  margin: 30px auto;
+  background: $content-bg;
+  border: 1px solid $border;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* ----- Header ----- */
+#header {
+  background: $header-bg;
+  color: $header-text;
+  padding: 28px 30px 0;
+  border-bottom: 4px solid #000;
+}
+
+#branding {
+  padding-bottom: 18px;
+}
+
+#site-title {
+  margin: 0;
+  font-family: $serif;
+  font-size: 38px;
+  line-height: 1.1;
+  a {
+    color: $header-text;
+    text-decoration: none;
+    &:hover { color: #fff; text-decoration: none; }
+  }
+}
+
+#site-description {
+  margin: 4px 0 0;
+  font-style: italic;
+  color: #bbb;
+  font-size: 14px;
+}
+
+#access {
+  background: $nav-bg;
+  margin: 0 -30px;
+  padding: 0 30px;
+}
+
+#access .menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#access .menu li {
+  margin: 0;
+}
+
+#access .menu a {
+  display: block;
+  padding: 10px 14px;
+  color: $nav-text;
+  font-family: $sans;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+}
+
+#access .menu a:hover,
+#access .menu li.current > a {
+  background: #000;
+  color: #fff;
+}
+
+/* ----- Main layout ----- */
+#main {
+  display: flex;
+  flex-direction: row;
+  padding: 30px;
+  gap: 30px;
+}
+
+#content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+#sidebar {
+  flex: 0 0 240px;
+}
+
+/* ----- Posts ----- */
+.post + .post {
+  margin-top: 40px;
+  padding-top: 40px;
+  border-top: 1px dotted $border;
+}
+
+.post-title,
+.page-title {
+  font-family: $serif;
+  font-size: 30px;
+  line-height: 1.2;
+  margin: 0 0 8px;
+  a {
+    color: $text;
+    &:hover { color: $link-hover; text-decoration: none; }
+  }
+}
+
+.post-meta {
+  color: $muted;
+  font-style: italic;
+  font-size: 13px;
+  margin: 0 0 20px;
+  a { color: $muted; }
+  a:hover { color: $link-hover; }
+}
+
+.post-entry,
+.page-entry {
+  font-size: 15px;
+  line-height: 1.7;
+
+  h2 { font-size: 22px; margin-top: 1.6em; }
+  h3 { font-size: 18px; margin-top: 1.4em; }
+
+  p { margin: 0 0 1em; }
+
+  blockquote {
+    margin: 1em 0;
+    padding: 6px 18px;
+    border-left: 4px solid $border;
+    color: $muted;
+    font-style: italic;
+  }
+
+  pre, code {
+    font-family: Menlo, Consolas, "Courier New", monospace;
+    font-size: 13px;
+  }
+  code { background: #f6f6f6; padding: 1px 4px; border: 1px solid #eee; border-radius: 2px; }
+  pre {
+    background: #f6f6f6;
+    padding: 12px;
+    overflow-x: auto;
+    border: 1px solid #eee;
+    code { background: none; border: 0; padding: 0; }
+  }
+
+  ul, ol { padding-left: 1.4em; }
+
+  hr { border: 0; border-top: 1px solid $border; margin: 2em 0; }
+}
+
+.post-footer {
+  margin-top: 24px;
+  padding-top: 12px;
+  border-top: 1px dotted $border;
+  color: $muted;
+  font-size: 13px;
+  .post-tags { margin: 0 0 6px; }
+  .bookmark { margin: 0; font-style: italic; }
+}
+
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  font-size: 13px;
+  .prev, .next { max-width: 48%; }
+  .next { margin-left: auto; text-align: right; }
+}
+
+.read-more {
+  display: inline-block;
+  margin-top: 6px;
+  font-style: italic;
+}
+
+/* ----- Pagination ----- */
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  font-size: 13px;
+  .pagination-page { color: $muted; }
+}
+
+/* ----- Sidebar widgets ----- */
+.widget {
+  margin-bottom: 28px;
+  font-size: 13px;
+}
+
+.widget-title {
+  font-family: $serif;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid $widget-rule;
+}
+
+.widget ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li {
+    padding: 3px 0;
+    border-bottom: 1px dotted #eee;
+    .count { color: $muted; font-size: 11px; }
+  }
+}
+
+.widget form {
+  display: flex;
+  gap: 4px;
+}
+.widget input[type="search"] {
+  flex: 1;
+  padding: 4px 6px;
+  border: 1px solid $border;
+  font: 13px $serif;
+}
+.widget button {
+  padding: 4px 10px;
+  border: 1px solid $border;
+  background: #f6f6f6;
+  font: 12px $sans;
+  cursor: pointer;
+}
+.widget button:hover { background: #eee; }
+
+.screen-reader-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* Tag cloud */
+.tagcloud {
+  line-height: 1.8;
+  a { margin-right: 4px; }
+  .tag-s  { font-size: 11px; }
+  .tag-m  { font-size: 13px; }
+  .tag-l  { font-size: 15px; font-weight: bold; }
+  .tag-xl { font-size: 18px; font-weight: bold; }
+}
+
+/* ----- Archive / categories / tags pages ----- */
+.archive-list,
+.category-list,
+.tag-list {
+  list-style: none;
+  margin: 0 0 1.4em;
+  padding: 0;
+  li {
+    padding: 4px 0;
+    border-bottom: 1px dotted $border;
+  }
+  .date { color: $muted; font-size: 12px; margin-left: 6px; font-style: italic; }
+}
+
+h2.year-heading,
+h2.category-heading,
+h2.tag-heading {
+  font-family: $serif;
+  font-size: 22px;
+  margin-top: 1.4em;
+  padding-bottom: 4px;
+  border-bottom: 1px solid $border;
+}
+
+/* ----- Comments ----- */
+#comments {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 2px solid $border;
+  h3 {
+    font-family: $serif;
+    font-size: 20px;
+    margin: 0 0 14px;
+  }
+}
+
+.giscus-placeholder {
+  background: #fff8d6;
+  border: 1px solid #f1d97a;
+  padding: 10px 14px;
+  border-radius: 2px;
+  color: #6a5a00;
+  font-size: 13px;
+  code { background: rgba(0, 0, 0, 0.06); padding: 1px 4px; border-radius: 2px; }
+}
+
+/* ----- Footer ----- */
+#colophon {
+  background: $nav-bg;
+  color: #aaa;
+  font-size: 12px;
+  padding: 18px 30px;
+  text-align: center;
+  border-top: 4px solid #000;
+  p { margin: 4px 0; }
+  a { color: #ddd; }
+  a:hover { color: #fff; }
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 720px) {
+  #page { margin: 0; border: 0; }
+  #main {
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+  }
+  #sidebar { flex: 1 1 auto; }
+  #header { padding: 22px 20px 0; }
+  #access { margin: 0 -20px; padding: 0 20px; }
+  #site-title { font-size: 30px; }
+  .post-title, .page-title { font-size: 24px; }
+}

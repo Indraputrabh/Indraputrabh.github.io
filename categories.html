@@ -1,0 +1,18 @@
+---
+title: Categories
+permalink: /categories.html
+---
+<p>Posts grouped by category.</p>
+
+{%- assign sortedCats = site.categories | sort -%}
+{%- for cat in sortedCats -%}
+<h2 class="category-heading" id="{{ cat[0] | slugify }}">{{ cat[0] }} <span class="count">({{ cat[1].size }})</span></h2>
+<ul class="category-list">
+  {%- for post in cat[1] -%}
+  <li>
+    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    <span class="date">{{ post.date | date: "%b %-d, %Y" }}</span>
+  </li>
+  {%- endfor -%}
+</ul>
+{%- endfor -%}

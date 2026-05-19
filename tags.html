@@ -1,0 +1,29 @@
+---
+title: Tags
+permalink: /tags.html
+---
+<p>Browse the tag cloud, then jump to any tag's posts below.</p>
+
+<p class="tagcloud">
+  {%- assign tags = site.tags | sort -%}
+  {%- for tag in tags -%}
+    {%- assign count = tag[1].size -%}
+    {%- if count > 4 -%}{%- assign size = 'xl' -%}
+    {%- elsif count > 2 -%}{%- assign size = 'l' -%}
+    {%- elsif count > 1 -%}{%- assign size = 'm' -%}
+    {%- else -%}{%- assign size = 's' -%}{%- endif -%}
+  <a class="tag-{{ size }}" href="#{{ tag[0] | slugify }}">{{ tag[0] }}</a>
+  {%- endfor -%}
+</p>
+
+{%- for tag in tags -%}
+<h2 class="tag-heading" id="{{ tag[0] | slugify }}">{{ tag[0] }} <span class="count">({{ tag[1].size }})</span></h2>
+<ul class="tag-list">
+  {%- for post in tag[1] -%}
+  <li>
+    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    <span class="date">{{ post.date | date: "%b %-d, %Y" }}</span>
+  </li>
+  {%- endfor -%}
+</ul>
+{%- endfor -%}
