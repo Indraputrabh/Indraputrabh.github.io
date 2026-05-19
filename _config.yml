@@ -25,11 +25,20 @@ plugins:
   - jekyll-paginate
   - jekyll-redirect-from
 
-# Disqus comments. Register a site at https://disqus.com/ and put the
-# generated shortname here. Until then, posts show a friendly "comments
-# not configured yet" notice. See README.md for the walkthrough.
-disqus:
-  shortname: "DISQUS_SHORTNAME"
+# Giscus comments (GitHub Discussions-backed). Free, no ads.
+# Comments will start working once the Giscus GitHub App is installed
+# on the repo: https://github.com/apps/giscus
+giscus:
+  repo: "Indraputrabh/Indraputrabh.github.io"
+  repo_id: "R_kgDOSiEQjw"
+  category: "Announcements"
+  category_id: "DIC_kwDOSiEQj84C9ZLe"
+  mapping: "pathname"
+  reactions_enabled: "1"
+  emit_metadata: "0"
+  input_position: "bottom"
+  theme: "light"
+  lang: "en"
 
 exclude:
   - Gemfile
