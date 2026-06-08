@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+DRAFTS="$ROOT/_drafts"
+
+usage() {
+  echo "Usage: bin/new-post \"Post title\" [slug]"
+  echo
+  echo "Creates a draft in _drafts/ and opens it in Typora."
+  echo "Preview drafts locally with: bundle exec jekyll serve --drafts --livereload"
+  exit 1
+}
+
+[[ $# -lt 1 ]] && usage
+
+title="$1"
+slug="${2:-}"
+
+if [[ -z "$slug" ]]; then
+  slug="$(printf '%s' "$title" \
+    | tr '[:upper:]' '[:lower:]' \
+    | sed -E 's/[^a-z0-9]+/-/g; s/^-+|-+$//g')"
+fi
+
+if [[ -z "$slug" ]]; then
+  echo "Could not derive a slug from title. Pass one explicitly:"
+  echo "  bin/new-post \"$title\" my-slug"
+  exit 1
+fi
+
+file="$DRAFTS/$slug.md"
+
+if [[ -e "$file" ]]; then
+  echo "Draft already exists: $file"
+  open -a Typora "$file"
+  exit 0
+fi
+
+today="$(date '+%Y-%m-%d %H:%M:%S %z' | sed 's/\([0-9][0-9]\)$/:\1/')"
+escaped_title="${title//\"/\\\"}"
+
+cat > "$file" <<EOF
+---
+title: "$escaped_title"
+date: $today
+categories: [Rants]
+tags: []
+---
+
+EOF
+
+echo "Created $file"
+open -a Typora "$file"

@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+DRAFTS="$ROOT/_drafts"
+POSTS="$ROOT/_posts"
+
+usage() {
+  echo "Usage: bin/publish-post <slug>"
+  echo
+  echo "Moves _drafts/<slug>.md to _posts/YYYY-MM-DD-<slug>.md"
+  echo "Updates the post date to now."
+  exit 1
+}
+
+[[ $# -ne 1 ]] && usage
+
+slug="$1"
+slug="${slug%.md}"
+draft="$DRAFTS/$slug.md"
+
+if [[ ! -f "$draft" ]]; then
+  echo "Draft not found: $draft"
+  exit 1
+fi
+
+today="$(date '+%Y-%m-%d')"
+now="$(date '+%Y-%m-%d %H:%M:%S %z' | sed 's/\([0-9][0-9]\)$/:\1/')"
+dest="$POSTS/$today-$slug.md"
+
+if [[ -e "$dest" ]]; then
+  echo "Post already exists: $dest"
+  exit 1
+fi
+
+python3 - "$draft" "$dest" "$now" <<'PY'
+import re
+import sys
+
+src, dest, now = sys.argv[1:4]
+text = open(src, encoding="utf-8").read()
+text = re.sub(r"(?m)^date: .*$", f"date: {now}", text, count=1)
+open(dest, "w", encoding="utf-8").write(text)
+PY
+
+rm "$draft"
+echo "Published $dest"
+echo "Push when ready: git add _posts && git commit && git push"

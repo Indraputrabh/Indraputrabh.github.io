@@ -15,22 +15,34 @@ bundle exec jekyll serve --livereload
 
 Then open <http://localhost:4000>.
 
-## New post
+## New post (Typora)
 
-`_posts/YYYY-MM-DD-some-slug.md`:
+Writing happens in [Typora](https://typora.io/) — open the repo folder or `_drafts/` in Typora's sidebar and edit without staring at raw Markdown syntax.
 
-```yaml
----
-title: "Something I have opinions about"
-date: 2026-05-19 10:00:00 +0800
-categories: [Rants]
-tags: [opinion]
----
+```bash
+# Create a draft and open it in Typora
+bin/new-post "Something I have opinions about"
 
-words
+# Preview drafts + live site locally
+bundle exec jekyll serve --drafts --livereload
+
+# When you're happy, move the draft into _posts/
+bin/publish-post something-i-have-opinions-about
+
+git add _posts && git commit && git push
 ```
 
-`git push` and Pages rebuilds in about a minute.
+Pages rebuilds in about a minute after push.
+
+### Typora settings worth changing once
+
+In **Typora → Settings**:
+
+- **Files → On launch**: open `_drafts/` (or the whole repo) so posts show in the sidebar.
+- **Image → When insert…**: copy to `assets/images/` (create the folder when you first need it).
+- **Editor → Line wrap**: enabled (default) — matches how the blog reads on the web.
+
+Manual fallback — `_posts/YYYY-MM-DD-some-slug.md` with YAML front matter (`bin/post-template.md` has the shape).
 
 ## Comments
 
